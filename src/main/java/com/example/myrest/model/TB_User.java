@@ -36,7 +36,8 @@ public class TB_User {
     @JsonIgnore
     private List<Role> roles = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
     private List<TB_Board> boards = new ArrayList<>();
+
 }

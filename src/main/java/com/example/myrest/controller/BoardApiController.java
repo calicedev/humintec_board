@@ -14,7 +14,7 @@ class BoardApiController {
     @Autowired
     private BoardRepository repository;
 
-    @GetMapping("/boards")
+    @GetMapping("/boards") // 전체 조회
     List<TB_Board> all(@RequestParam(required = false, defaultValue = "") String title,
                        @RequestParam(required=false) String content) {
 //        타이틀이랑 컨텐트 빈값이면 전체 조회 (게시글 검색)
@@ -25,23 +25,21 @@ class BoardApiController {
 
         }
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/boards")
     TB_Board newBoard(@RequestBody TB_Board newBoard) {
         return repository.save(newBoard);
     }
 
-    // Single item
 
-    @GetMapping("/boards/{id}")
+    @GetMapping("/boards/{id}") //아이디에 해당하는 한명만 가져오기 (조회)
     TB_Board one(@PathVariable Long id) {
 
         return repository.findById(id).orElse(null);
 
     }
 
-    @PutMapping("/boards/{id}")
+    @PutMapping("/boards/{id}") //사용자가 있는지 확인하고 있으면 업데이트 없으면 insert (업데이트)
     TB_Board replaceBoard(@RequestBody TB_Board newBoard, @PathVariable Long id) {
 
         return repository.findById(id)

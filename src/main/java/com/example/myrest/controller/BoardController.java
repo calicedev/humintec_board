@@ -1,6 +1,7 @@
 package com.example.myrest.controller;
 
 import com.example.myrest.model.TB_Board;
+import com.example.myrest.model.TB_User;
 import com.example.myrest.repository.BoardRepository;
 import com.example.myrest.repository.UserRepository;
 import com.example.myrest.service.BoardService;
@@ -28,9 +29,6 @@ public class BoardController {
     private BoardRepository boardRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private BoardService boardService;
 
     @Autowired
@@ -45,10 +43,10 @@ public class BoardController {
 
 
   @GetMapping("/list")
-    public String list(Model model, @PageableDefault(size=4) Pageable pageable,
+    public String list(Model model, @PageableDefault(value = Integer.MAX_VALUE, sort = "createdDate",  direction = Sort.Direction.DESC )Pageable pageable,
+//  public String list(Model model, @PageableDefault(value = Integer.MAX_VALUE)Pageable pageable,
                        @RequestParam(defaultValue = "") String searchText){
-      Page<TB_Board> boards = boardRepository.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
-
+      Page<TB_Board> boards = boardRepository.findByTitleContainingOrContentContaining(searchText,searchText, pageable);
         int startPage= Math.max(1,boards.getPageable().getPageNumber() -10);
         int endPage= Math.min(boards.getTotalPages(), boards.getPageable().getPageNumber() +10);
         model.addAttribute("starPage", startPage);
@@ -66,9 +64,9 @@ public class BoardController {
     public Page<TB_Board> list2( @PageableDefault(value = Integer.MAX_VALUE) Pageable pageable,
                                      @RequestParam(defaultValue = "") String searchText){
 
-        Page<TB_Board> board = boardRepository.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
+        Page<TB_Board> board = boardRepository.findByTitleContainingOrContentContaining(searchText,searchText, pageable);
+        //System.out.println((board.getContent().get(0).getUser().getUsername()));
 
-        System.out.println(board);
         return board;
     }
 
