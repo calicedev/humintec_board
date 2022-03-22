@@ -52,4 +52,6 @@ public class  TB_Board extends BaseTimeEntity{
     @JsonIgnoreProperties({"board"})
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<Reply> replyList;
+
+
 }
