@@ -16,9 +16,9 @@ public class BoardService {
     @Autowired
     private UserRepository userRepository;
 
-    public TB_Board save(String username, TB_Board TBBoard){
+    public TB_Board save(String username, TB_Board board){
         TB_User user = userRepository.findByUsername(username);
-        TBBoard.setUser(user);
-        return boardRepository.save(TBBoard);
+        board.setUser(user);
+        return boardRepository.save(board);
     }
 }

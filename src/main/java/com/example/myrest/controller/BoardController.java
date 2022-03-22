@@ -95,4 +95,5 @@ public class BoardController {
 //        boardRepository.save(board);
         return "redirect:/board/list"; //리다이렉트 하면서 재업데이트 하는 과정
     }
+
 }

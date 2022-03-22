@@ -40,4 +40,5 @@ public class TB_User {
     @OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
     private List<TB_Board> boards = new ArrayList<>();
 
+
 }
