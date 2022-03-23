@@ -21,7 +21,7 @@ public class ReplyController {
 
     /* CREATE */
     @ResponseBody
-    @PostMapping("/formid=65")
+    @PostMapping("/form/2")
 //    public void save() {
     public String save(Long boardId,Reply reply) {
         System.out.println("success in here ");

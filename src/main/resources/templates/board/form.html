@@ -102,7 +102,7 @@
                 content: $("#reply-content").val(),
             }
             console.log((data.boardId)*1);
-            var urls="/board/formid="+data.boardId;
+            var urls="/board/form/2";
             $.ajax({
                 type: "POST",
                 url: urls,
